@@ -1,0 +1,14 @@
+.gallery__carts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 17px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+@media screen and (max-width:400px) {
+  .gallery__carts {
+    gap: 20px;
+  }
+}
