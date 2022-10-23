@@ -12,7 +12,8 @@
 
 @media screen and (max-width: 768px) {
   .profile__profession {
-    max-width: 90%;
+    max-width: 189px;
+    ;
   }
 }
 

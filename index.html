@@ -34,7 +34,7 @@
           <img class="gallery__img" src="./img/Karachaevsk.jpg" alt="Карачаевск">
           <div class="gallery__info">
             <h2 class="gallery__title">Карачаевск</h2>
-            <button class="gallery__like gallery__like_active" type="button"></button>
+            <button class="gallery__like gallery_like_condition_active" type="button"></button>
           </div>
         </li>
         <li class="gallery__cart">
@@ -45,9 +45,9 @@
           </div>
         </li>
         <li class="gallery__cart">
-          <img class="gallery__img" src="./img/dombay.jpg" alt="Домбай">
+          <img class="gallery__img" src="./img/chinesewall.jpg" alt="Китайская стена">
           <div class="gallery__info">
-            <h2 class="gallery__title">Домбай</h2>
+            <h2 class="gallery__title">Китайская стена</h2>
             <button class="gallery__like" type="button"></button>
           </div>
         </li>
@@ -75,13 +75,15 @@
       </ul>
     </section>
     <section class="popup">
-      <form class="popup__form" name="form">
+      <div class="popup__container">
         <h2 class="popup__title">Редактировать профиль</h2>
-        <input class="popup__input popup__input_info_name" name="fullName" type="text">
-        <input class="popup__input popup__input_info_profession" name="profession" type="text">
-        <button class="popup__btn" type="submit">Сохранить</button>
+        <form class="form" name="form">
+          <input class="form__input form__input_info_name" name="fullName" type="text">
+          <input class="form__input form__input_info_profession" name="profession" type="text">
+          <button class="form__btn" type="submit">Сохранить</button>
+        </form>
         <button class="popup__btn-close" type="button"></button>
-      </form>
+      </div>
     </section>
   </main>
   <footer class="footer">
