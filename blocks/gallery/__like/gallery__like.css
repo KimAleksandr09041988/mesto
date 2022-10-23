@@ -3,6 +3,8 @@
   opacity: 1;
   width: 22px;
   height: 19px;
+  outline: none;
+  border: none;
   background-color: transparent;
   background-image: url('../../../img/like.svg');
   background-repeat: no-repeat;

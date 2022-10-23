@@ -5,92 +5,88 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Место</title>
   <link rel="stylesheet" href="./pages/index.css">
 </head>
 
 <body class="content">
-  <div class="page">
-    <!-- header -->
-    <header class="header">
-      <img class="logo" src="./img/Vector.svg" alt="Логотип">
-    </header>
-    <main>
-      <!-- profile -->
-      <section class="profile">
-        <img class="profile__img-avatar" src="./img/avatar.jpg" alt="Аватар">
-        <div class="profile__info">
-          <div class="profile__wrapper">
-            <h1 class="profile__name">Жак-Ив Кусто</h1>
-            <button class="profile__edit-btn"></button>
-          </div>
-          <p class="profile__profession">Исследователь океана</p>
+  <!-- header -->
+  <header class="header">
+    <img class="logo" src="./img/Vector.svg" alt="Логотип">
+  </header>
+  <main>
+    <!-- profile -->
+    <section class="profile">
+      <img class="profile__img-avatar" src="./img/avatar.jpg" alt="Аватар">
+      <div class="profile__info">
+        <div class="profile__wrapper">
+          <h1 class="profile__name">Жак-Ив Кусто</h1>
+          <button class="profile__edit-btn" type="button"></button>
         </div>
-        <button class="btn-createCart">
-          <img src="./img/cartbtn.svg" alt="Добавить карточку">
-        </button>
-      </section>
-      <!-- gallery -->
-      <section class="gallery">
-        <ul class="gallery__carts">
-          <li class="gallery__cart">
-            <img class="gallery__img" src="./img/Karachaevsk.jpg" alt="Карачаевск">
-            <div class="gallery__info">
-              <h2 class="gallery__title">Карачаевск</h2>
-              <div class="gallery__like gallery__like_active"></div>
-            </div>
-          </li>
-          <li class="gallery__cart">
-            <img class="gallery__img" src="./img/elbrus.jpg" alt="Гора Эльбрус">
-            <div class="gallery__info">
-              <h2 class="gallery__title">Гора Эльбрус</h2>
-              <div class="gallery__like"></div>
-            </div>
-          </li>
-          <li class="gallery__cart">
-            <img class="gallery__img" src="./img/dombay.jpg" alt="Домбай">
-            <div class="gallery__info">
-              <h2 class="gallery__title">Домбай</h2>
-              <div class="gallery__like"></div>
-            </div>
-          </li>
-          <li class="gallery__cart">
-            <img class="gallery__img" src="./img/elbrus.jpg" alt="Гора Эльбрус">
-            <div class="gallery__info">
-              <h2 class="gallery__title">Гора Эльбрус</h2>
-              <div class="gallery__like"></div>
-            </div>
-          </li>
-          <li class="gallery__cart">
-            <img class="gallery__img" src="./img/dombay.jpg" alt="Домбай">
-            <div class="gallery__info">
-              <h2 class="gallery__title">Домбай</h2>
-              <div class="gallery__like"></div>
-            </div>
-          </li>
-          <li class="gallery__cart">
-            <img class="gallery__img" src="./img/Karachaevsk.jpg" alt="Карачаевск">
-            <div class="gallery__info">
-              <h2 class="gallery__title">Карачаево-Черкасово</h2>
-              <div class="gallery__like"></div>
-            </div>
-          </li>
-        </ul>
-      </section>
-      <section class="popup">
-        <form class="popup__container" action="#">
-          <h2 class="popup__title">Редактировать профиль</h2>
-          <input class="popup__input popup__input_name" type="text">
-          <input class="popup__input popup__input_profession" type="text">
-          <input class="popup__btn" type="submit" value="Сохранить">
-          <button class="popup__btn-close"></button>
-        </form>
-      </section>
-    </main>
-    <footer class="footer">
-      <p class="footer__text">&copy;&nbsp;2020 Mesto Russia</p>
-    </footer>
-  </div>
+        <p class="profile__profession">Исследователь океана</p>
+      </div>
+      <button class="profile__add-btn" type="button"></button>
+    </section>
+    <!-- gallery -->
+    <section class="gallery">
+      <ul class="gallery__carts">
+        <li class="gallery__cart">
+          <img class="gallery__img" src="./img/Karachaevsk.jpg" alt="Карачаевск">
+          <div class="gallery__info">
+            <h2 class="gallery__title">Карачаевск</h2>
+            <button class="gallery__like gallery__like_active" type="button"></button>
+          </div>
+        </li>
+        <li class="gallery__cart">
+          <img class="gallery__img" src="./img/elbrus.jpg" alt="Гора Эльбрус">
+          <div class="gallery__info">
+            <h2 class="gallery__title">Гора Эльбрус</h2>
+            <button class="gallery__like" type="button"></button>
+          </div>
+        </li>
+        <li class="gallery__cart">
+          <img class="gallery__img" src="./img/dombay.jpg" alt="Домбай">
+          <div class="gallery__info">
+            <h2 class="gallery__title">Домбай</h2>
+            <button class="gallery__like" type="button"></button>
+          </div>
+        </li>
+        <li class="gallery__cart">
+          <img class="gallery__img" src="./img/elbrus.jpg" alt="Гора Эльбрус">
+          <div class="gallery__info">
+            <h2 class="gallery__title">Гора Эльбрус</h2>
+            <button class="gallery__like" type="button"></button>
+          </div>
+        </li>
+        <li class="gallery__cart">
+          <img class="gallery__img" src="./img/dombay.jpg" alt="Домбай">
+          <div class="gallery__info">
+            <h2 class="gallery__title">Домбай</h2>
+            <button class="gallery__like" type="button"></button>
+          </div>
+        </li>
+        <li class="gallery__cart">
+          <img class="gallery__img" src="./img/Karachaevsk.jpg" alt="Карачаевск">
+          <div class="gallery__info">
+            <h2 class="gallery__title">Карачаево-Черкасово</h2>
+            <button class="gallery__like" type="button"></button>
+          </div>
+        </li>
+      </ul>
+    </section>
+    <section class="popup">
+      <form class="popup__form" name="form">
+        <h2 class="popup__title">Редактировать профиль</h2>
+        <input class="popup__input popup__input_info_name" name="fullName" type="text">
+        <input class="popup__input popup__input_info_profession" name="profession" type="text">
+        <button class="popup__btn" type="submit">Сохранить</button>
+        <button class="popup__btn-close" type="button"></button>
+      </form>
+    </section>
+  </main>
+  <footer class="footer">
+    <p class="footer__text">&copy;&nbsp;2020 Mesto Russia</p>
+  </footer>
   <script src="./js/index.js"></script>
 </body>
 

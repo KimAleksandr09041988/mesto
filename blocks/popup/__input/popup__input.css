@@ -11,3 +11,7 @@
   line-height: 17px;
   color: #000;
 }
+
+.popup__input:not(:first-child) {
+  margin-top: 17px;
+}

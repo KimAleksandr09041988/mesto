@@ -1,6 +1,6 @@
 .profile__name {
   display: block;
-  width: 294px;
+  max-width: 294px;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -14,7 +14,7 @@
 
 @media screen and (max-width: 768px) {
   .profile__name {
-    width: 90%;
+    max-width: 90%;
     font-size: 40px;
   }
 }
