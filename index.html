@@ -29,57 +29,27 @@
     </section>
     <!-- gallery -->
     <section class="gallery">
-      <ul class="gallery__carts">
-        <li class="gallery__cart">
-          <img class="gallery__img" src="./img/Karachaevsk.jpg" alt="Карачаевск">
-          <div class="gallery__info">
-            <h2 class="gallery__title">Карачаевск</h2>
-            <button class="gallery__like gallery__like_condition_active" type="button"></button>
-          </div>
-        </li>
-        <li class="gallery__cart">
-          <img class="gallery__img" src="./img/elbrus.jpg" alt="Гора Эльбрус">
-          <div class="gallery__info">
-            <h2 class="gallery__title">Гора Эльбрус</h2>
-            <button class="gallery__like" type="button"></button>
-          </div>
-        </li>
-        <li class="gallery__cart">
-          <img class="gallery__img" src="./img/chinesewall.jpg" alt="Китайская стена">
-          <div class="gallery__info">
-            <h2 class="gallery__title">Китайская стена</h2>
-            <button class="gallery__like" type="button"></button>
-          </div>
-        </li>
-        <li class="gallery__cart">
-          <img class="gallery__img" src="./img/elbrus.jpg" alt="Гора Эльбрус">
-          <div class="gallery__info">
-            <h2 class="gallery__title">Гора Эльбрус</h2>
-            <button class="gallery__like" type="button"></button>
-          </div>
-        </li>
-        <li class="gallery__cart">
-          <img class="gallery__img" src="./img/dombay.jpg" alt="Домбай">
-          <div class="gallery__info">
-            <h2 class="gallery__title">Домбай</h2>
-            <button class="gallery__like" type="button"></button>
-          </div>
-        </li>
-        <li class="gallery__cart">
-          <img class="gallery__img" src="./img/Karachaevsk.jpg" alt="Карачаевск">
-          <div class="gallery__info">
-            <h2 class="gallery__title">Карачаево-Черкасово</h2>
-            <button class="gallery__like" type="button"></button>
-          </div>
-        </li>
-      </ul>
+      <ul class="gallery__carts"></ul>
     </section>
-    <section class="popup">
+    <!-- popup -->
+    <section class="popup popup_profile">
+      <div class="popup__container">
+        <h2 class="popup__title">Редактировать профиль</h2>
+        <form class="form form_profile" name="form">
+          <input class="form__input form__input_info_name" name="fullName" type="text">
+          <input class="form__input form__input_info_profession" name="profession" type="text">
+          <button class="form__btn" type="submit">Сохранить</button>
+        </form>
+        <button class="popup__btn-close" type="button"></button>
+      </div>
+    </section>
+
+    <section class="popup popup_cart">
       <div class="popup__container">
         <h2 class="popup__title">Редактировать профиль</h2>
         <form class="form" name="form">
-          <input class="form__input form__input_info_name" name="fullName" type="text">
-          <input class="form__input form__input_info_profession" name="profession" type="text">
+          <input class="form__input form__input_cart_name" name="fullName" type="text">
+          <input class="form__input form__input_cart_url" name="profession" type="text">
           <button class="form__btn" type="submit">Сохранить</button>
         </form>
         <button class="popup__btn-close" type="button"></button>
