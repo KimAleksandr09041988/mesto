@@ -30,13 +30,13 @@
     </section>
     <!-- gallery -->
     <section class="gallery">
-      <ul class="gallery__carts"></ul>
+      <ul class="gallery__cards"></ul>
     </section>
     <!-- popup -->
     <section class="popup popup_profile">
       <div class="popup__container">
         <h2 class="popup__title">Редактировать профиль</h2>
-        <form class="form form_profile" name="form">
+        <form class="form" name="profile">
           <input class="form__input" name="fullName" type="text" placeholder="ФИО">
           <input class="form__input" name="profession" type="text" placeholder="Профессия">
           <button class="form__btn" type="submit">Сохранить</button>
@@ -45,12 +45,12 @@
       </div>
     </section>
 
-    <section class="popup popup_cart">
+    <section class="popup popup_card">
       <div class="popup__container">
         <h2 class="popup__title">Новое место</h2>
-        <form class="form" name="form">
-          <input class="form__input" name="cartName" type="text" placeholder="Название">
-          <input class="form__input" name="cartUrl" type="text" placeholder="Ссылка на картинку">
+        <form class="form" name="card">
+          <input class="form__input" name="cardName" type="text" placeholder="Название">
+          <input class="form__input" name="cardUrl" type="text" placeholder="Ссылка на картинку">
           <button class="form__btn" type="submit">Создать</button>
         </form>
         <button class="popup__btn-close" type="button"></button>
@@ -63,7 +63,7 @@
   </footer>
 
   <template id="card">
-    <li class="gallery__cart">
+    <li class="gallery__card">
       <img class="gallery__img">
       <div class="gallery__info">
         <h2 class="gallery__title"></h2>
