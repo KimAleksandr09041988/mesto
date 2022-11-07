@@ -1,12 +1,15 @@
 const profileEditBtn = document.querySelector('.profile__edit-btn');
 const popupProfile = document.querySelector('.popup_profile');
-const popupBtnClose = document.querySelector('.popup__btn-close');
 const popupFormProfile = document.querySelector('.form_profile');
 const profileName = document.querySelector('.profile__name');
-const formInputName = document.querySelector('.form__input_info_name');
+const formInputName = document.querySelector('[name="fullName"]');
 const profileProfession = document.querySelector('.profile__profession');
-const formInputProfession = document.querySelector('.form__input_info_profession');
+const formInputProfession = document.querySelector('[name="profession"]');
 const galleryCarts = document.querySelector('.gallery__carts');
+const profileAddcarts = document.querySelector('.profile__add-btn');
+const popupCart = document.querySelector('.popup_cart');
+const cardTemplate = document.querySelector('#card').content;
+
 
 const initialCards = [
   {
@@ -35,32 +38,47 @@ const initialCards = [
   }
 ];
 
-function createCard(name, link) {
-  const card = document.createElement('li');
 
-  card.classList.add('gallery__cart');
-  card.innerHTML = `
-  <img class="gallery__img" src="${link}" alt="${name}">
-  <div class="gallery__info">
-    <h2 class="gallery__title">${name}</h2>
-    <button class="gallery__like" type="button"></button>
-  </div>
-  `;
+
+function createCard(name, link) {
+  const card = cardTemplate.querySelector('.gallery__cart').cloneNode(true);
+
+  card.querySelector('.gallery__img').src = `${link}`;
+  card.querySelector('.gallery__img').alt = `${name}`;
+  card.querySelector('.gallery__title').textContent = `${name}`;
+
+
   galleryCarts.prepend(card);
 }
 
 initialCards.forEach(item => createCard(item.name, item.link));
 
+function handleEventClosePopup(event) {
+  const popupActive = event.target.closest('.popup');
+  const isTargetOverlay = event.target.classList.contains('popup_active');
+  const isTargetBtnClose = event.target.classList.contains('popup__btn-close');
+
+  if (isTargetOverlay || isTargetBtnClose) {
+    closePopup(popupActive);
+  }
+}
+
 function openPopup(popup) {
   popup.classList.add('popup_active');
+  document.addEventListener('click', handleEventClosePopup);
 }
 
 function closePopup(popup) {
   popup.classList.remove('popup_active');
+  document.removeEventListener('click', handleEventClosePopup);
 }
 
+profileAddcarts.addEventListener('click', () => {
+  openPopup(popupCart);
+});
+
 // profile-info
-function addValueInValue() {
+function changeValue() {
   formInputName.value = profileName.textContent;
   formInputProfession.value = profileProfession.textContent;
 }
@@ -76,16 +94,7 @@ function changeTextProfile(form) {
 
 profileEditBtn.addEventListener('click', () => {
   openPopup(popupProfile);
-  addValueInValue();
-});
-
-popupBtnClose.addEventListener('click', (event) => {
-  const overlay = event.target.classList.contains('popup_active');
-  const closeBtnPopup = event.target.classList.contains('popup__btn-close');
-
-  if (overlay || closeBtnPopup) {
-    closePopup(popupBtnClose);
-  }
+  changeValue();
 });
 
 popupFormProfile.addEventListener('submit', changeTextProfile);

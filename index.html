@@ -14,6 +14,7 @@
   <header class="header">
     <img class="logo" src="./img/Vector.svg" alt="Логотип">
   </header>
+
   <main>
     <!-- profile -->
     <section class="profile">
@@ -36,8 +37,8 @@
       <div class="popup__container">
         <h2 class="popup__title">Редактировать профиль</h2>
         <form class="form form_profile" name="form">
-          <input class="form__input form__input_info_name" name="fullName" type="text">
-          <input class="form__input form__input_info_profession" name="profession" type="text">
+          <input class="form__input" name="fullName" type="text" placeholder="ФИО">
+          <input class="form__input" name="profession" type="text" placeholder="Профессия">
           <button class="form__btn" type="submit">Сохранить</button>
         </form>
         <button class="popup__btn-close" type="button"></button>
@@ -46,20 +47,33 @@
 
     <section class="popup popup_cart">
       <div class="popup__container">
-        <h2 class="popup__title">Редактировать профиль</h2>
+        <h2 class="popup__title">Новое место</h2>
         <form class="form" name="form">
-          <input class="form__input form__input_cart_name" name="fullName" type="text">
-          <input class="form__input form__input_cart_url" name="profession" type="text">
-          <button class="form__btn" type="submit">Сохранить</button>
+          <input class="form__input" name="cartName" type="text" placeholder="Название">
+          <input class="form__input" name="cartUrl" type="text" placeholder="Ссылка на картинку">
+          <button class="form__btn" type="submit">Создать</button>
         </form>
         <button class="popup__btn-close" type="button"></button>
       </div>
     </section>
   </main>
+  <!-- footer -->
   <footer class="footer">
     <p class="footer__text">&copy;&nbsp;2020 Mesto Russia</p>
   </footer>
+
+  <template id="card">
+    <li class="gallery__cart">
+      <img class="gallery__img">
+      <div class="gallery__info">
+        <h2 class="gallery__title"></h2>
+        <button class="gallery__like" type="button"></button>
+      </div>
+    </li>
+  </template>
+
   <script src="./js/index.js"></script>
+
 </body>
 
 </html>
