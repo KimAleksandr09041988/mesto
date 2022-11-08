@@ -1,4 +1,7 @@
 .gallery__img {
+  position: relative;
+  z-index: 1;
+  cursor: pointer;
   width: 100%;
   height: auto;
   object-fit: cover;

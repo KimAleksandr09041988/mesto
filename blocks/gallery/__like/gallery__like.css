@@ -1,4 +1,6 @@
 .gallery__like {
+  position: relative;
+  z-index: 5;
   cursor: pointer;
   opacity: 1;
   width: 22px;
