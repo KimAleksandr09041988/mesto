@@ -43,6 +43,10 @@ const initialCards = [
   }
 ];
 
+function renderCart(container, item) {
+  container.prepend(item);
+}
+
 function createCard(name, link) {
   const cardTemplate = document.querySelector('#card').content;
   const card = cardTemplate.querySelector('.gallery__card').cloneNode(true);
@@ -58,19 +62,13 @@ function createCard(name, link) {
   img.addEventListener('click', (event) => {
     openPopup(popupImage);
     imgFigure.src = img.src;
+    imgFigure.alt = title.textContent;
     subtitleFigure.textContent = title.textContent;
   });
   btnRemove.addEventListener('click', (event) => event.target.closest('.gallery__card').remove());
   btnLike.addEventListener('click', (event) => event.target.classList.toggle('gallery__like_condition_active'));
 
-  galleryCards.prepend(card);
-}
-
-
-
-function a(event) {
-  const b = event.target.closest('.gallery__card');
-  b.addEventListener('click', () => openPopup(popupImage));
+  renderCart(galleryCards, card);
 }
 
 function handleEventClosePopup(event) {
