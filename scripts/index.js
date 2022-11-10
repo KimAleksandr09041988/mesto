@@ -1,6 +1,4 @@
-
-
-function renderCart(container, item) {
+function renderCard(container, item) {
   container.prepend(item);
 }
 
@@ -25,7 +23,7 @@ function createCard(name, link) {
   btnRemove.addEventListener('click', (event) => event.target.closest('.gallery__card').remove());
   btnLike.addEventListener('click', (event) => event.target.classList.toggle('gallery__like_condition_active'));
 
-  renderCart(galleryCards, card);
+  return card;
 }
 
 function handleEventClosePopup(event) {
@@ -69,7 +67,7 @@ function formDefault(e) {
   e.preventDefault();
 }
 
-initialCards.forEach(item => createCard(item.name, item.link));
+initialCards.forEach(item => renderCard(galleryCards, createCard(item.name, item.link)));
 
 profileEditBtn.addEventListener('click', () => {
   openPopup(popupProfile);
@@ -87,7 +85,7 @@ formProfile.addEventListener('submit', (event) => {
 });
 
 formCard.addEventListener('submit', (event) => {
-  createCard(inputCardName.value, inputCardUrl.value);
+  renderCard(galleryCards, createCard(inputCardName.value, inputCardUrl.value));
   formDefault(event);
   closePopup(popupCard);
 });
