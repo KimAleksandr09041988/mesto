@@ -60,7 +60,6 @@ function changeValueCard() {
 function changeTextProfile() {
   profileProfession.textContent = inputProfession.value;
   profileName.textContent = inputName.value;
-  closePopup(popupProfile);
 }
 
 function formDefault(e) {
@@ -82,6 +81,7 @@ btnConditionFormCards.addEventListener('click', () => {
 formProfile.addEventListener('submit', (event) => {
   changeTextProfile();
   formDefault(event);
+  closePopup(popupProfile);
 });
 
 formCard.addEventListener('submit', (event) => {
