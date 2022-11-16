@@ -51,10 +51,8 @@ function changeValueProfile() {
   inputName.value = profileName.textContent;
 }
 
-function changeValueCard() {
-  inputCardUrl.value = '';
-  inputCardName.value = '';
-
+function resetForm(form) {
+  form.reset();
 }
 
 function changeTextProfile() {
@@ -75,7 +73,6 @@ profileEditBtn.addEventListener('click', () => {
 
 btnConditionFormCards.addEventListener('click', () => {
   openPopup(popupCard);
-  changeValueCard();
 });
 
 formProfile.addEventListener('submit', (event) => {
@@ -88,4 +85,5 @@ formCard.addEventListener('submit', (event) => {
   renderCard(galleryCards, createCard(inputCardName.value, inputCardUrl.value));
   formDefault(event);
   closePopup(popupCard);
+  resetForm(formCard);
 });
