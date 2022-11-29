@@ -3,7 +3,6 @@ function renderCard(container, item) {
 }
 
 function createCard(name, link) {
-  const cardTemplate = document.querySelector('#card').content;
   const card = cardTemplate.querySelector('.gallery__card').cloneNode(true);
   const img = card.querySelector('.gallery__img');
   const title = card.querySelector('.gallery__title');
@@ -14,12 +13,13 @@ function createCard(name, link) {
   img.alt = name;
   title.textContent = name;
 
-  img.addEventListener('click', (event) => {
+  img.addEventListener('click', () => {
     openPopup(popupImage);
     imgFigure.src = img.src;
     imgFigure.alt = title.textContent;
     subtitleFigure.textContent = title.textContent;
   });
+
   btnRemove.addEventListener('click', (event) => event.target.closest('.gallery__card').remove());
   btnLike.addEventListener('click', (event) => event.target.classList.toggle('gallery__like_condition_active'));
 
@@ -49,10 +49,6 @@ function closePopup(popup) {
 function changeValueProfile() {
   inputProfession.value = profileProfession.textContent;
   inputName.value = profileName.textContent;
-}
-
-function resetForm(form) {
-  form.reset();
 }
 
 function changeTextProfile() {
@@ -85,5 +81,5 @@ formCard.addEventListener('submit', (event) => {
   renderCard(galleryCards, createCard(inputCardName.value, inputCardUrl.value));
   formDefault(event);
   closePopup(popupCard);
-  resetForm(formCard);
+  event.target.reset();
 });

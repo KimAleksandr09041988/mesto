@@ -15,6 +15,8 @@ const likeBtns = document.querySelectorAll('.gallery__like');
 const popupImage = document.querySelector('.popup_image');
 const imgFigure = document.querySelector('.figure__img');
 const subtitleFigure = document.querySelector('.figure__subtitle');
+const cardTemplate = document.querySelector('#card').content;
+
 
 const initialCards = [
   {
