@@ -17,7 +17,6 @@ const imgFigure = document.querySelector('.figure__img');
 const subtitleFigure = document.querySelector('.figure__subtitle');
 const cardTemplate = document.querySelector('#card').content;
 
-
 const initialCards = [
   {
     name: 'Архыз',
@@ -44,3 +43,11 @@ const initialCards = [
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
   }
 ];
+
+const objForm = {
+  formSelector: '.form',
+  inputSelector: '.form__input',
+  submitButtonSelector: '.form__btn',
+  inactiveButtonClass: 'form__btn_inactive',
+  inputErrorClass: 'form__input_type_error',
+};

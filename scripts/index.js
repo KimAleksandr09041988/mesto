@@ -33,6 +33,7 @@ function handleEventClosePopup(event) {
 
   if (isTargetOverlay || isTargetBtnClose) {
     closePopup(popupActive);
+    removeEventEscape();
   }
 }
 
@@ -44,6 +45,7 @@ function openPopup(popup) {
 function closePopup(popup) {
   popup.classList.remove('popup_active');
   document.removeEventListener('click', handleEventClosePopup);
+  document.removeEventListener('keydown', handleEventEscape);
 }
 
 function changeValueProfile() {
@@ -56,30 +58,35 @@ function changeTextProfile() {
   profileName.textContent = inputName.value;
 }
 
-function formDefault(e) {
-  e.preventDefault();
+function handleEventEscape(event) {
+  const popupActive = document.querySelector('.popup_active');
+  if (event.key === 'Escape') {
+    closePopup(popupActive);
+  }
 }
 
 initialCards.forEach(item => renderCard(galleryCards, createCard(item.name, item.link)));
 
 profileEditBtn.addEventListener('click', () => {
   openPopup(popupProfile);
+  document.addEventListener('keydown', handleEventEscape);
   changeValueProfile();
+  enableValidation();
 });
 
 btnConditionFormCards.addEventListener('click', () => {
   openPopup(popupCard);
+  document.addEventListener('keydown', handleEventEscape);
+  formCard.reset();
+  enableValidation();
 });
 
-formProfile.addEventListener('submit', (event) => {
+formProfile.addEventListener('submit', () => {
   changeTextProfile();
-  formDefault(event);
   closePopup(popupProfile);
 });
 
-formCard.addEventListener('submit', (event) => {
+formCard.addEventListener('submit', () => {
   renderCard(galleryCards, createCard(inputCardName.value, inputCardUrl.value));
-  formDefault(event);
   closePopup(popupCard);
-  event.target.reset();
 });

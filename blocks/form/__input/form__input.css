@@ -13,10 +13,6 @@
   color: #000;
 }
 
-.form__input:not(:first-child) {
-  margin-top: 17px;
-}
-
 @media screen and (max-width:560px) {
   .form__input {
     width: calc(100vw - 82px);
