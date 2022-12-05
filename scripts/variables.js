@@ -46,6 +46,7 @@ const initialCards = [
 
 const objForm = {
   formSelector: '.form',
+  fieldsetSelector: '.form__fieldset',
   inputSelector: '.form__input',
   submitButtonSelector: '.form__btn',
   inactiveButtonClass: 'form__btn_inactive',
