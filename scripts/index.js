@@ -66,6 +66,8 @@ function handleEventEscape(event) {
   }
 }
 
+// прошу прощение. Раньше можно было нажав на отослать новую версию отменить предыдущую отправку. Первую отправил, отменил, и сел доделывать. Потом отправил вторую и смотрю оказывается уже была проверена работа. Снова отменил. и снова уже проверено
+
 function removeValidatesettings(popup) {
   const inputsList = popup.querySelectorAll('.form__input');
   const inputErrorsList = popup.querySelectorAll('.form__input-error');
