@@ -33,17 +33,18 @@ function handleEventClosePopup(event) {
 
   if (isTargetOverlay || isTargetBtnClose) {
     closePopup(popupActive);
-    removeEventEscape();
   }
 }
 
 function openPopup(popup) {
   popup.classList.add('popup_active');
   document.addEventListener('click', handleEventClosePopup);
+  document.addEventListener('keydown', handleEventEscape);
 }
 
 function closePopup(popup) {
   popup.classList.remove('popup_active');
+  removeValidatesettings(popup);
   document.removeEventListener('click', handleEventClosePopup);
   document.removeEventListener('keydown', handleEventEscape);
 }
@@ -59,26 +60,33 @@ function changeTextProfile() {
 }
 
 function handleEventEscape(event) {
-  const popupActive = document.querySelector('.popup_active');
   if (event.key === 'Escape') {
+    const popupActive = document.querySelector('.popup_active');
     closePopup(popupActive);
   }
+}
+
+function removeValidatesettings(popup) {
+  const inputsList = popup.querySelectorAll('.form__input');
+  const inputErrorsList = popup.querySelectorAll('.form__input-error');
+  inputsList.forEach(input => {
+    input.classList.remove('form__input_type_error');
+  });
+  inputErrorsList.forEach(inputError => {
+    inputError.textContent = '';
+  });
 }
 
 initialCards.forEach(item => renderCard(galleryCards, createCard(item.name, item.link)));
 
 profileEditBtn.addEventListener('click', () => {
   openPopup(popupProfile);
-  document.addEventListener('keydown', handleEventEscape);
   changeValueProfile();
-  enableValidation();
 });
 
 btnConditionFormCards.addEventListener('click', () => {
   openPopup(popupCard);
-  document.addEventListener('keydown', handleEventEscape);
   formCard.reset();
-  enableValidation();
 });
 
 formProfile.addEventListener('submit', () => {
