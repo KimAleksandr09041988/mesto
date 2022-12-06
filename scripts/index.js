@@ -44,7 +44,6 @@ function openPopup(popup) {
 
 function closePopup(popup) {
   popup.classList.remove('popup_active');
-  removeValidatesettings(popup);
   document.removeEventListener('click', handleEventClosePopup);
   document.removeEventListener('keydown', handleEventEscape);
 }
@@ -66,9 +65,7 @@ function handleEventEscape(event) {
   }
 }
 
-// прошу прощение. Раньше можно было нажав на отослать новую версию отменить предыдущую отправку. Первую отправил, отменил, и сел доделывать. Потом отправил вторую и смотрю оказывается уже была проверена работа. Снова отменил. и снова уже проверено
-
-function removeValidatesettings(popup) {
+function removeValidateSettings(popup) {
   const inputsList = popup.querySelectorAll('.form__input');
   const inputErrorsList = popup.querySelectorAll('.form__input-error');
   inputsList.forEach(input => {
@@ -79,15 +76,25 @@ function removeValidatesettings(popup) {
   });
 }
 
+function disableBtnSubmitForm(popup, obj) {
+  const formBtnInactive = popup.querySelector(`${obj.submitButtonSelector}`);
+  formBtnInactive.disabled = true;
+  formBtnInactive.classList.add(`${obj.inactiveButtonClass}`);
+}
+
 initialCards.forEach(item => renderCard(galleryCards, createCard(item.name, item.link)));
 
 profileEditBtn.addEventListener('click', () => {
   openPopup(popupProfile);
   changeValueProfile();
+  removeValidateSettings(popupProfile);
+  disableBtnSubmitForm(popupProfile, objForm);
 });
 
 btnConditionFormCards.addEventListener('click', () => {
   openPopup(popupCard);
+  removeValidateSettings(popupCard);
+  disableBtnSubmitForm(popupCard, objForm);
   formCard.reset();
 });
 
