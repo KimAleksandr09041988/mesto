@@ -107,3 +107,6 @@ formCard.addEventListener('submit', () => {
   renderCard(galleryCards, createCard(inputCardName.value, inputCardUrl.value));
   closePopup(popupCard);
 });
+
+
+
