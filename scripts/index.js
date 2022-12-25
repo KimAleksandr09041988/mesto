@@ -47,12 +47,6 @@ function removeValidateSettings(popup) {
   });
 }
 
-function disableBtnSubmitForm(popup, obj) {
-  const formBtnInactive = popup.querySelector(`${obj.submitButtonSelector}`);
-  formBtnInactive.disabled = true;
-  formBtnInactive.classList.add(`${obj.inactiveButtonClass}`);
-}
-
 function getDataCard(name, link) {
   cardData.name = name;
   cardData.link = link;
@@ -68,13 +62,11 @@ profileEditBtn.addEventListener('click', () => {
   openPopup(popupProfile);
   changeValueProfile();
   removeValidateSettings(popupProfile);
-  disableBtnSubmitForm(popupProfile, objForm);
 });
 
 btnConditionFormCards.addEventListener('click', () => {
   openPopup(popupCard);
   removeValidateSettings(popupCard);
-  disableBtnSubmitForm(popupCard, objForm);
   formCard.reset();
 });
 
