@@ -55,3 +55,5 @@ const objForm = {
   inactiveButtonClass: 'form__btn_inactive',
   inputErrorClass: 'form__input_type_error',
 };
+
+export { profileEditBtn, popupProfile, profileName, profileProfession, formProfile, formCard, inputName, inputProfession, inputCardName, inputCardUrl, galleryCards, btnConditionFormCards, popupCard, likeBtns, popupImage, imgFigure, subtitleFigure, cardData, initialCards, objForm };

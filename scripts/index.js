@@ -1,9 +1,28 @@
 import FormValidator from './FormValidator.js';
 import Card from './Card.js';
 import { openPopup, closePopup } from './utils.js';
+import {
+  inputProfession,
+  inputName,
+  profileProfession,
+  profileName,
+  cardData,
+  galleryCards,
+  initialCards,
+  profileEditBtn,
+  popupProfile,
+  objForm,
+  btnConditionFormCards,
+  popupCard,
+  formCard,
+  formProfile,
+  inputCardName,
+  inputCardUrl
+}
+  from './variables.js';
 
-function renderCard(container, item) {
-  const card = new Card(item.name, item.link);
+function renderCard(container, item, template) {
+  const card = new Card(item.name, item.link, template);
   container.prepend(card.createCard());
 }
 
@@ -38,11 +57,11 @@ function getDataCard(name, link) {
   cardData.name = name;
   cardData.link = link;
 
-  return cardData
+  return cardData;
 }
 
 initialCards.forEach(item => {
-  renderCard(galleryCards, item);
+  renderCard(galleryCards, item, '#card');
 });
 
 profileEditBtn.addEventListener('click', () => {
@@ -65,7 +84,7 @@ formProfile.addEventListener('submit', () => {
 });
 
 formCard.addEventListener('submit', () => {
-  renderCard(galleryCards, getDataCard(inputCardName.value, inputCardUrl.value));
+  renderCard(galleryCards, getDataCard(inputCardName.value, inputCardUrl.value), '#card');
   closePopup(popupCard);
 });
 
