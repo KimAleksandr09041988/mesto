@@ -21,6 +21,12 @@ import {
 }
   from './variables.js';
 
+const formValidationProfile = new FormValidator(objForm, '.form_type_profile');
+const formValidationCard = new FormValidator(objForm, '.form_type_card');
+
+formValidationProfile.enableValidation();
+formValidationCard.enableValidation();
+
 function renderCard(container, item, template) {
   const card = new Card(item.name, item.link, template);
   container.prepend(card.createCard());
@@ -36,17 +42,6 @@ function changeTextProfile() {
   profileName.textContent = inputName.value;
 }
 
-function removeValidateSettings(popup) {
-  const inputsList = popup.querySelectorAll('.form__input');
-  const inputErrorsList = popup.querySelectorAll('.form__input-error');
-  inputsList.forEach(input => {
-    input.classList.remove('form__input_type_error');
-  });
-  inputErrorsList.forEach(inputError => {
-    inputError.textContent = '';
-  });
-}
-
 function getDataCard(name, link) {
   cardData.name = name;
   cardData.link = link;
@@ -60,13 +55,15 @@ initialCards.forEach(item => {
 
 profileEditBtn.addEventListener('click', () => {
   openPopup(popupProfile);
+  formValidationProfile.resetValidation();
+  formValidationProfile.disableButton();
   changeValueProfile();
-  removeValidateSettings(popupProfile);
 });
 
 btnConditionFormCards.addEventListener('click', () => {
   openPopup(popupCard);
-  removeValidateSettings(popupCard);
+  formValidationCard.resetValidation();
+  formValidationCard.disableButton();
   formCard.reset();
 });
 
@@ -80,6 +77,4 @@ formCard.addEventListener('submit', () => {
   closePopup(popupCard);
 });
 
-new FormValidator(objForm, '.form_type_profile').enableValidation();
 
-new FormValidator(objForm, '.form_type_card').enableValidation();
