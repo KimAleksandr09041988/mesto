@@ -1,16 +1,9 @@
-import { openPopup } from './utils.js';
-import {
-  imgFigure,
-  subtitleFigure,
-  popupImage
-}
-  from './variables.js';
-
 export default class Card {
-  constructor(text, link, template) {
-    this._text = text;
-    this._link = link;
-    this._template = template;
+  constructor(data, cardSelector, handleCardClick) {
+    this._name = data.name;
+    this._link = data.link;
+    this._handleCardClick = handleCardClick;
+    this._template = cardSelector;
     this._newCart = this._getTemplate();
     this._title = this._newCart.querySelector('.gallery__title');
     this._img = this._newCart.querySelector('.gallery__img');
@@ -29,15 +22,9 @@ export default class Card {
   }
 
   _changeData() {
-    this._title.textContent = this._text;
-    this._img.alt = this._text;
+    this._title.textContent = this._name;
     this._img.src = this._link;
-  }
-
-  _handleDataPopup() {
-    imgFigure.src = this._link;
-    imgFigure.alt = this._text;
-    subtitleFigure.textContent = this._text;
+    this._img.alt = this._name;
   }
 
   _handleConditionLike() {
@@ -50,8 +37,6 @@ export default class Card {
   }
 
   _setEventListeners() {
-
-
     this._btnLike.addEventListener('click', () => {
       this._handleConditionLike();
     });
@@ -61,15 +46,13 @@ export default class Card {
     });
 
     this._img.addEventListener('click', () => {
-      this._handleDataPopup();
-      openPopup(popupImage);
+      this._handleCardClick(this._name, this._link);
     });
   }
 
   createCard() {
     this._changeData();
     this._setEventListeners();
-
     return this._newCart;
   }
 }
