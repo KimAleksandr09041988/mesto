@@ -11,9 +11,11 @@ import {
   btnConditionFormCards,
   profileEditBtn,
   initialCards,
-  objForm,
+  validationConfig,
   fullNameInput,
   professionInput,
+  formProfile,
+  formCard
 }
   from '../utils/variables.js';
 import Section from '../components/Section.js';
@@ -22,15 +24,19 @@ import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import UserInfo from '../components/UserInfo.js';
 
-const formValidationProfile = new FormValidator(objForm, '.form_type_profile');
+const formValidationProfile = new FormValidator(validationConfig, formProfile);
 
-const formValidationCard = new FormValidator(objForm, '.form_type_card');
+const formValidationCard = new FormValidator(validationConfig, formCard);
+
+const createCard = (item) => {
+  const card = new Card(item, '#card', handleCardClick);
+  return card;
+};
 
 const renderCard = new Section({
   items: initialCards,
   renderer: (item) => {
-    const card = new Card(item, '#card', handleCardClick);
-    renderCard.addItem(card.createCard());
+    renderCard.addItem(createCard(item).createCard());
   }
 }, galleryCards);
 
@@ -43,8 +49,7 @@ const handleCardClick = (name, link) => {
 
 const popupAddCard = new PopupWithForm({
   submitForm: (obj) => {
-    const card = new Card(obj, "#card", handleCardClick);
-    renderCard.addItem(card.createCard());
+    renderCard.addItem(createCard(obj).createCard());
   },
 }, popupCard);
 
@@ -60,9 +65,9 @@ const setUserInfo = new UserInfo({
   professionSelector: profileProfession,
 });
 
-formValidationProfile.enableValidation();
+formValidationProfile.setEventListeners();
 
-formValidationCard.enableValidation();
+formValidationCard.setEventListeners();
 
 renderCard.rendererItems();
 

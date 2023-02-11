@@ -3,17 +3,17 @@ export default class Card {
     this._name = data.name;
     this._link = data.link;
     this._handleCardClick = handleCardClick;
-    this._template = cardSelector;
-    this._newCart = this._getTemplate();
-    this._title = this._newCart.querySelector('.gallery__title');
-    this._img = this._newCart.querySelector('.gallery__img');
-    this._btnLike = this._newCart.querySelector('.gallery__like');
-    this._btnRemove = this._newCart.querySelector('.gellery__btn-remove');
+    this._templateSelector = cardSelector;
+    this._newCard = this._getTemplate();
+    this._title = this._newCard.querySelector('.gallery__title');
+    this._img = this._newCard.querySelector('.gallery__img');
+    this._btnLike = this._newCard.querySelector('.gallery__like');
+    this._btnRemove = this._newCard.querySelector('.gellery__btn-remove');
   }
 
   _getTemplate() {
     const card = document
-      .querySelector(`${this._template}`)
+      .querySelector(`${this._templateSelector}`)
       .content
       .querySelector('.gallery__card')
       .cloneNode(true);
@@ -32,8 +32,8 @@ export default class Card {
   }
 
   _removeCard() {
-    this._newCart.remove();
-    this._newCart = null;
+    this._newCard.remove();
+    this._newCard = null;
   }
 
   _setEventListeners() {
@@ -53,6 +53,6 @@ export default class Card {
   createCard() {
     this._changeData();
     this._setEventListeners();
-    return this._newCart;
+    return this._newCard;
   }
 }

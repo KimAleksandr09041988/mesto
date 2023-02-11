@@ -8,7 +8,8 @@ const btnConditionFormCards = document.querySelector('.profile__add-btn');
 const profileEditBtn = document.querySelector('.profile__edit-btn');
 const fullNameInput = document.querySelector('#fullName-input');
 const professionInput = document.querySelector('#profession-input');
-
+const formProfile = document.querySelector('.form_type_profile');
+const formCard = document.querySelector('.form_type_card');
 const initialCards = [
   {
     name: 'Архыз',
@@ -36,7 +37,7 @@ const initialCards = [
   }
 ];
 
-const objForm = {
+const validationConfig = {
   fieldsetSelector: '.form__fieldset',
   inputSelector: '.form__input',
   submitButtonSelector: '.form__btn',
@@ -45,6 +46,8 @@ const objForm = {
 };
 
 export {
+  formProfile,
+  formCard,
   profileEditBtn,
   popupProfile,
   profileName,
@@ -54,7 +57,7 @@ export {
   popupCard,
   popupImage,
   initialCards,
-  objForm,
+  validationConfig,
   fullNameInput,
   professionInput
 };
