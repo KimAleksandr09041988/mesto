@@ -30,7 +30,7 @@ const formValidationCard = new FormValidator(validationConfig, formCard);
 
 const renderCard = (item) => {
   const card = new Card(item, '#card', handleCardClick);
-  renderCard.addItem(card.createCard());
+  cardSection.addItem(card.createCard());
 };
 
 const cardSection = new Section({
