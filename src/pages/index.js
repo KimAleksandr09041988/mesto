@@ -28,17 +28,18 @@ const formValidationProfile = new FormValidator(validationConfig, formProfile);
 
 const formValidationCard = new FormValidator(validationConfig, formCard);
 
-const createCard = (item) => {
+const renderCard = (item) => {
   const card = new Card(item, '#card', handleCardClick);
-  return card;
+  renderCard.addItem(card.createCard());
 };
 
-const renderCard = new Section({
+const cardSection = new Section({
   items: initialCards,
   renderer: (item) => {
-    renderCard.addItem(createCard(item).createCard());
+    renderCard(item);
   }
 }, galleryCards);
+
 
 const popupShowImage = new PopupWithImage(popupImage);
 popupShowImage.setEventListeners();
@@ -49,7 +50,7 @@ const handleCardClick = (name, link) => {
 
 const popupAddCard = new PopupWithForm({
   submitForm: (obj) => {
-    renderCard.addItem(createCard(obj).createCard());
+    renderCard(obj);
   },
 }, popupCard);
 
@@ -69,7 +70,7 @@ formValidationProfile.setEventListeners();
 
 formValidationCard.setEventListeners();
 
-renderCard.rendererItems();
+cardSection.rendererItems();
 
 popupAddCard.setEventListeners();
 

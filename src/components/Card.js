@@ -13,7 +13,7 @@ export default class Card {
 
   _getTemplate() {
     const card = document
-      .querySelector(`${this._templateSelector}`)
+      .querySelector(this._templateSelector)
       .content
       .querySelector('.gallery__card')
       .cloneNode(true);
