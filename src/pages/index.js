@@ -18,7 +18,10 @@ import {
   identifier,
   token,
   avatarImg,
-  popupDelete
+  popupDelete,
+  formAvatar,
+  popupAvatar,
+  profileEditAvatar
 }
   from '../utils/variables.js';
 import Section from '../components/Section.js';
@@ -40,8 +43,8 @@ const server = new Api({
 });
 
 const formValidationProfile = new FormValidator(validationConfig, formProfile);
-
 const formValidationCard = new FormValidator(validationConfig, formCard);
+const formValidationAvatar = new FormValidator(validationConfig, formAvatar);
 
 const renderCard = (item) => {
   const card = new Card(item, '#card', handleCardClick, handleCardDelete, userId, addLike, deductLike);
@@ -91,21 +94,51 @@ const popupDeleteCard = new PopupWithBtn({
 
 const popupAddCard = new PopupWithForm({
   submitForm: (obj) => {
+    popupAddCard.loadingRequest(true);
     server.addCardInfo(obj)
       .then(result => {
         renderCard(result);
+      })
+      .catch(err => {
+        console.log(err);
+      })
+      .finally(() => {
+        popupAddCard.loadingRequest(false);
       });
   },
 }, popupCard);
 
 const popupSetProfile = new PopupWithForm({
   submitForm: (obj) => {
+    popupSetProfile.loadingRequest(true);
     server.patchUserInfo(obj)
       .then(result => {
         setUserInfo.setUserInfo(result);
+      })
+      .catch(err => {
+        console.log(err);
+      })
+      .finally(() => {
+        popupSetProfile.loadingRequest(false);
       });
   },
 }, popupProfile);
+
+const popupSetAvatar = new PopupWithForm({
+  submitForm: (obj) => {
+    popupSetAvatar.loadingRequest(true);
+    server.changeAvatarUrl(obj)
+      .then(result => {
+        setUserInfo.setImgAvatar(result);
+      })
+      .catch(err => {
+        console.log(err);
+      })
+      .finally(() => {
+        popupSetAvatar.loadingRequest(false);
+      });
+  }
+}, popupAvatar);
 
 const setUserInfo = new UserInfo({
   nameSelector: profileName,
@@ -115,20 +148,24 @@ const setUserInfo = new UserInfo({
 
 formValidationProfile.setEventListeners();
 formValidationCard.setEventListeners();
+formValidationAvatar.setEventListeners();
 popupDeleteCard.setEventListeners();
 popupAddCard.setEventListeners();
 popupShowImage.setEventListeners();
 popupSetProfile.setEventListeners();
+popupSetAvatar.setEventListeners();
 
-server.getCardInfo().then(result => {
-  cardSection.rendererItems(result);
-});
+server.getCardInfo()
+  .then(result => {
+    cardSection.rendererItems(result);
+  });
 
-server.getUserInfo().then((result) => {
-  setUserInfo.setUserInfo(result);
-  setUserInfo.setImgAvatar(result);
-  return userId = result._id;
-});
+server.getUserInfo()
+  .then((result) => {
+    setUserInfo.setUserInfo(result);
+    setUserInfo.setImgAvatar(result);
+    return userId = result._id;
+  });
 
 btnConditionFormCards.addEventListener('click', () => {
   formValidationCard.resetValidation();
@@ -142,5 +179,11 @@ profileEditBtn.addEventListener('click', () => {
   fullNameInput.value = setUserInfo.getUserInfo().name;
   professionInput.value = setUserInfo.getUserInfo().profession;
   popupSetProfile.open();
+});
+
+profileEditAvatar.addEventListener('click', () => {
+  formValidationProfile.resetValidation();
+  formValidationProfile.disableButton();
+  popupSetAvatar.open();
 });
 

@@ -103,4 +103,21 @@ export default class Api {
         }
       });
   }
+
+  changeAvatarUrl(obj) {
+    return fetch(`${this._url}/users/me/avatar`, {
+      method: 'PATCH',
+      headers: this._headers,
+      body: JSON.stringify({
+        avatar: obj.avatar
+      })
+    })
+      .then(res => {
+        if (res.ok) {
+          return res.json();
+        } else {
+          return Promise.reject((`Ошибка: ${res.status}`));
+        }
+      });
+  }
 }
