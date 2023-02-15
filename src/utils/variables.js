@@ -1,41 +1,19 @@
 const profileProfession = '.profile__profession';
 const profileName = '.profile__name';
+const avatarImg = '.profile__img-avatar';
 const galleryCards = '.gallery__cards';
-const popupImage = '.popup_image';
-const popupCard = '.popup_card';
-const popupProfile = '.popup_profile';
+const popupImage = '.popup_type_image';
+const popupCard = '.popup_type_card';
+const popupProfile = '.popup_type_profile';
+const popupDelete = '.popup_type_delete';
 const btnConditionFormCards = document.querySelector('.profile__add-btn');
 const profileEditBtn = document.querySelector('.profile__edit-btn');
 const fullNameInput = document.querySelector('#fullName-input');
 const professionInput = document.querySelector('#profession-input');
 const formProfile = document.querySelector('.form_type_profile');
 const formCard = document.querySelector('.form_type_card');
-const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-];
+const identifier = 'https://mesto.nomoreparties.co/v1/cohort-59';
+const token = '55d9c654-87a0-44f5-b6c8-0fdd71644143';
 
 const validationConfig = {
   fieldsetSelector: '.form__fieldset',
@@ -56,8 +34,11 @@ export {
   btnConditionFormCards,
   popupCard,
   popupImage,
-  initialCards,
   validationConfig,
   fullNameInput,
-  professionInput
+  professionInput,
+  identifier,
+  token,
+  avatarImg,
+  popupDelete
 };

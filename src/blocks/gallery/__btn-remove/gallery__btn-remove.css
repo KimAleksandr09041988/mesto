@@ -1,4 +1,4 @@
-.gellery__btn-remove {
+.gallery__btn-remove {
   position: absolute;
   z-index: 5;
   opacity: 1;
@@ -17,6 +17,6 @@
   transition: opacity .3s ease-in-out;
 }
 
-.gellery__btn-remove:hover {
+.gallery__btn-remove:hover {
   opacity: .6;
 }

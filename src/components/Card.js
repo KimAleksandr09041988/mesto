@@ -1,14 +1,24 @@
 export default class Card {
-  constructor(data, cardSelector, handleCardClick) {
+  constructor(data, cardSelector, handleCardClick, handleCardDelete, userId) {
     this._name = data.name;
     this._link = data.link;
+    this._like = data.likes;
+    this._id = data.owner._id;
+    this._idCard = data._id;
+    this._userId = userId;
     this._handleCardClick = handleCardClick;
+    this._handleCardDelete = handleCardDelete;
     this._templateSelector = cardSelector;
     this._newCard = this._getTemplate();
     this._title = this._newCard.querySelector('.gallery__title');
     this._img = this._newCard.querySelector('.gallery__img');
     this._btnLike = this._newCard.querySelector('.gallery__like');
-    this._btnRemove = this._newCard.querySelector('.gellery__btn-remove');
+    this._quantityLike = this._newCard.querySelector('.gallery__quantity-like');
+    this._btnRemove = this._newCard.querySelector('.gallery__btn-remove');
+  }
+
+  getCardId() {
+    return this._idCard;
   }
 
   _getTemplate() {
@@ -27,13 +37,18 @@ export default class Card {
     this._img.alt = this._name;
   }
 
+  setQuantityLike() {
+    this._quantityLike.textContent = this._like.length;
+  }
+
   _handleConditionLike() {
     this._btnLike.classList.toggle('gallery__like_condition_active');
   }
 
-  _removeCard() {
-    this._newCard.remove();
-    this._newCard = null;
+  _sortCard() {
+    if (this._id !== this._userId) {
+      this._btnRemove.remove();
+    }
   }
 
   _setEventListeners() {
@@ -42,7 +57,7 @@ export default class Card {
     });
 
     this._btnRemove.addEventListener('click', () => {
-      this._removeCard();
+      this._handleCardDelete(this);
     });
 
     this._img.addEventListener('click', () => {
@@ -53,6 +68,14 @@ export default class Card {
   createCard() {
     this._changeData();
     this._setEventListeners();
+    this.setQuantityLike();
+    this._sortCard();
     return this._newCard;
   }
+
+  removeCard() {
+    this._newCard.remove();
+    this._newCard = null;
+  }
+
 }
