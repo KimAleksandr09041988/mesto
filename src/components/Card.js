@@ -1,5 +1,5 @@
 export default class Card {
-  constructor(data, cardSelector, handleCardClick, handleCardDelete, userId) {
+  constructor(data, cardSelector, handleCardClick, handleCardDelete, userId, addLike, deductLike) {
     this._name = data.name;
     this._link = data.link;
     this._like = data.likes;
@@ -9,6 +9,8 @@ export default class Card {
     this._handleCardClick = handleCardClick;
     this._handleCardDelete = handleCardDelete;
     this._templateSelector = cardSelector;
+    this._addlike = addLike;
+    this._deductLike = deductLike;
     this._newCard = this._getTemplate();
     this._title = this._newCard.querySelector('.gallery__title');
     this._img = this._newCard.querySelector('.gallery__img');
@@ -37,17 +39,47 @@ export default class Card {
     this._img.alt = this._name;
   }
 
-  setQuantityLike() {
-    this._quantityLike.textContent = this._like.length;
+  _addConditionLike() {
+    this._btnLike.classList.add('gallery__like_condition_active');
   }
 
-  _handleConditionLike() {
-    this._btnLike.classList.toggle('gallery__like_condition_active');
+  _removeConditionLike() {
+    this._btnLike.classList.remove('gallery__like_condition_active');
   }
 
   _sortCard() {
     if (this._id !== this._userId) {
       this._btnRemove.remove();
+    }
+  }
+
+  _checkIdUser() {
+    return this._like.some(item => item._id === this._userId);
+  }
+
+  setQuantityLike() {
+    this._quantityLike.textContent = this._like.length;
+    if (this._checkIdUser()) {
+      this._addConditionLike();
+    } else {
+      this._removeConditionLike();
+    }
+  }
+
+  _handleConditionLike() {
+    if (this._checkIdUser()) {
+      this._deductLike(this._idCard)
+        .then(result => {
+          this._like = result.likes;
+          this.setQuantityLike();
+        });
+    } else {
+      this._addlike(this._idCard)
+        .then(result => {
+          this._like = result.likes;
+          this.setQuantityLike();
+        });
+
     }
   }
 

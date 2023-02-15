@@ -44,7 +44,7 @@ const formValidationProfile = new FormValidator(validationConfig, formProfile);
 const formValidationCard = new FormValidator(validationConfig, formCard);
 
 const renderCard = (item) => {
-  const card = new Card(item, '#card', handleCardClick, handleCardDelete, userId);
+  const card = new Card(item, '#card', handleCardClick, handleCardDelete, userId, addLike, deductLike);
   cardSection.addItem(card.createCard());
 };
 
@@ -58,6 +58,19 @@ const popupShowImage = new PopupWithImage(popupImage);
 
 const handleCardClick = (name, link) => {
   popupShowImage.open(name, link);
+};
+
+const handleCardDelete = (elem) => {
+  popupDeleteCard.open();
+  popupDeleteCard.returnElem(elem);
+};
+
+const addLike = (elem) => {
+  return server.addLike(elem);
+};
+
+const deductLike = (elem) => {
+  return server.deductLike(elem);
 };
 
 const popupDeleteCard = new PopupWithBtn({
@@ -75,11 +88,6 @@ const popupDeleteCard = new PopupWithBtn({
       });
   }
 }, popupDelete);
-
-const handleCardDelete = (elem) => {
-  popupDeleteCard.open();
-  popupDeleteCard.returnElem(elem);
-};
 
 const popupAddCard = new PopupWithForm({
   submitForm: (obj) => {
