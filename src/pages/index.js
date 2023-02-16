@@ -79,15 +79,12 @@ const deductLike = (elem) => {
 const popupDeleteCard = new PopupWithBtn({
   submitForm: (elem) => {
     server.deleteCardInfo(elem.getCardId())
-      .then(res => {
-        if (res.ok) {
-          return res.json();
-        } else {
-          return Promise.reject((`Ошибка: ${res.status}`));
-        }
-      })
       .then(() => {
+        popupDeleteCard.close();
         elem.removeCard();
+      })
+      .catch(err => {
+        console.log(err);
       });
   }
 }, popupDelete);
@@ -98,6 +95,7 @@ const popupAddCard = new PopupWithForm({
     server.addCardInfo(obj)
       .then(result => {
         renderCard(result);
+        popupAddCard.close();
       })
       .catch(err => {
         console.log(err);
@@ -114,6 +112,7 @@ const popupSetProfile = new PopupWithForm({
     server.patchUserInfo(obj)
       .then(result => {
         setUserInfo.setUserInfo(result);
+        popupSetProfile.close();
       })
       .catch(err => {
         console.log(err);
@@ -130,6 +129,7 @@ const popupSetAvatar = new PopupWithForm({
     server.changeAvatarUrl(obj)
       .then(result => {
         setUserInfo.setImgAvatar(result);
+        popupSetAvatar.close();
       })
       .catch(err => {
         console.log(err);
@@ -155,17 +155,14 @@ popupShowImage.setEventListeners();
 popupSetProfile.setEventListeners();
 popupSetAvatar.setEventListeners();
 
-server.getCardInfo()
+Promise.all([server.getUserInfo(), server.getCardInfo()])
   .then(result => {
-    cardSection.rendererItems(result);
-  });
-
-server.getUserInfo()
-  .then((result) => {
-    setUserInfo.setUserInfo(result);
-    setUserInfo.setImgAvatar(result);
-    return userId = result._id;
-  });
+    setUserInfo.setUserInfo(result[0]);
+    setUserInfo.setImgAvatar(result[0]);
+    cardSection.rendererItems(result[1]);
+    return userId = result[0]._id;
+  })
+  .catch(err => console.log(err));
 
 btnConditionFormCards.addEventListener('click', () => {
   formValidationCard.resetValidation();

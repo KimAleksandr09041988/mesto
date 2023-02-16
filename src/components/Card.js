@@ -72,14 +72,19 @@ export default class Card {
         .then(result => {
           this._like = result.likes;
           this.setQuantityLike();
+        })
+        .catch(err => {
+          console.log(err);
         });
     } else {
       this._addlike(this._idCard)
         .then(result => {
           this._like = result.likes;
           this.setQuantityLike();
+        })
+        .catch(err => {
+          console.log(err);
         });
-
     }
   }
 
