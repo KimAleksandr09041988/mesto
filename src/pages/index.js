@@ -32,8 +32,6 @@ import PopupWithBtn from '../components/PopupWithBtn.js';
 import UserInfo from '../components/UserInfo.js';
 import Api from '../components/Api.js';
 
-let userId;
-
 const server = new Api({
   url: identifier,
   headers: {
@@ -47,7 +45,7 @@ const formValidationCard = new FormValidator(validationConfig, formCard);
 const formValidationAvatar = new FormValidator(validationConfig, formAvatar);
 
 const renderCard = (item) => {
-  const card = new Card(item, '#card', handleCardClick, handleCardDelete, userId, addLike, deductLike);
+  const card = new Card(item, '#card', handleCardClick, handleCardDelete, { userId: userInfo.returnUserId() }, addLike, deductLike);
   cardSection.addItem(card.createCard());
 };
 
@@ -111,7 +109,7 @@ const popupSetProfile = new PopupWithForm({
     popupSetProfile.loadingRequest(true);
     server.patchUserInfo(obj)
       .then(result => {
-        setUserInfo.setUserInfo(result);
+        userInfo.setUserInfo(result);
         popupSetProfile.close();
       })
       .catch(err => {
@@ -128,7 +126,7 @@ const popupSetAvatar = new PopupWithForm({
     popupSetAvatar.loadingRequest(true);
     server.changeAvatarUrl(obj)
       .then(result => {
-        setUserInfo.setImgAvatar(result);
+        userInfo.setImgAvatar(result);
         popupSetAvatar.close();
       })
       .catch(err => {
@@ -140,11 +138,7 @@ const popupSetAvatar = new PopupWithForm({
   }
 }, popupAvatar);
 
-const setUserInfo = new UserInfo({
-  nameSelector: profileName,
-  professionSelector: profileProfession,
-  avatarSelector: avatarImg
-});
+let userInfo;
 
 formValidationProfile.setEventListeners();
 formValidationCard.setEventListeners();
@@ -157,10 +151,14 @@ popupSetAvatar.setEventListeners();
 
 Promise.all([server.getUserInfo(), server.getCardInfo()])
   .then(result => {
-    setUserInfo.setUserInfo(result[0]);
-    setUserInfo.setImgAvatar(result[0]);
+    userInfo = new UserInfo({
+      nameSelector: profileName,
+      professionSelector: profileProfession,
+      avatarSelector: avatarImg
+    }, result[0]);
+    userInfo.setUserInfo(result[0]);
+    userInfo.setImgAvatar(result[0]);
     cardSection.rendererItems(result[1]);
-    return userId = result[0]._id;
   })
   .catch(err => console.log(err));
 
@@ -173,8 +171,8 @@ btnConditionFormCards.addEventListener('click', () => {
 profileEditBtn.addEventListener('click', () => {
   formValidationProfile.resetValidation();
   formValidationProfile.disableButton();
-  fullNameInput.value = setUserInfo.getUserInfo().name;
-  professionInput.value = setUserInfo.getUserInfo().profession;
+  fullNameInput.value = userInfo.getUserInfo().name;
+  professionInput.value = userInfo.getUserInfo().profession;
   popupSetProfile.open();
 });
 

@@ -1,8 +1,13 @@
 export default class UserInfo {
-  constructor({ nameSelector, professionSelector, avatarSelector }) {
+  constructor({ nameSelector, professionSelector, avatarSelector }, data) {
+    this._data = data;
     this._name = document.querySelector(nameSelector);
     this._profession = document.querySelector(professionSelector);
     this._avatar = document.querySelector(avatarSelector);
+  }
+
+  returnUserId() {
+    return this._data._id;
   }
 
   setImgAvatar(obj) {
