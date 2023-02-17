@@ -25,7 +25,6 @@ import {
 }
   from '../utils/variables.js';
 import Section from '../components/Section.js';
-
 import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import PopupWithBtn from '../components/PopupWithBtn.js';
